@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<script id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.ui.vbm"
+				data-sap-ui-theme="sap_belize"
+				src="/resources/sap-ui-core.js"
+				data-sap-ui-resourceroots='{"exporters" : "exporters"}'>
+		</script>
+		<script>
+				sap.ui.getCore().attachInit(function() {
+					sap.ui.require(["sap/ui/vbm/Viewport", "sap/ui/vbm/Adapter3D", "exporters/GLTFExporter", "exporters/Adapter3DExtn"], 
+					function(Viewport, Adapter, GLTFExporter, Adapter3DExtn) {
+	
+						var width = jQuery.sap.getUriParameters().get("width")
+						var height = jQuery.sap.getUriParameters().get("height")
+	
+						var viewport = new Viewport({
+							id: "vb-viewport",
+							width: width,
+							height: height
+						})
+
+						var adapter = new Adapter3DExtn({	
+							id: "vb-adapter",
+							viewport: viewport
+						})
+
+						adapter.setExporter(new THREE.GLTFExporter());
+	
+						viewport.placeAt("body")
+					})
+				})
+			</script>
+	</head>
+	<body id="body" class="sapUiBody">
+		<div id="content"></div>
+	</body>
+</html>

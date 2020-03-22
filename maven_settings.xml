@@ -1,0 +1,30 @@
+<settings>
+    <profiles>
+        <profile>
+            <id>SAP-dev</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases/</url>
+                </repository>
+                <repository>
+                    <id>snapshot</id>
+                    <url>http://nexussnap.wdf.sap.corp:8081/nexus/content/groups/build.snapshots/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases/</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>snapshot</id>
+                    <url>http://nexussnap.wdf.sap.corp:8081/nexus/content/groups/build.snapshots/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>SAP-dev</activeProfile>
+    </activeProfiles>
+</settings>

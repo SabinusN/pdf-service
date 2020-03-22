@@ -1,0 +1,1 @@
+Prototype for creation of static images for a sap.ui.vbm.Adapter3D visualization driven by vbiJSON.

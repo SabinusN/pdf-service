@@ -1,0 +1,21 @@
+# Ignore target folders in projects
+/**/node_modules
+node_modules
+three.js
+
+# Ignore any form of log file 
+*.log
+
+# Ignore Eclipse project and settings files
+.classpath
+.settings
+.project
+
+# Ignore Idea project and settings files
+*.iml
+
+# Ignore nodeJS package lock file
+package-lock.json
+
+# Ignore VSCode local settings 
+.vscode

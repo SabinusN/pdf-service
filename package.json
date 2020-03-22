@@ -1,0 +1,44 @@
+{
+  "name": "vbvizsvc",
+  "version": "1.0.0",
+  "description": "Core of Visual Business 3D Visualization export service",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\"",
+    "start": "node ./server/www.js"
+  },
+  "engines": {
+    "node": "^10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://i070309@git.wdf.sap.corp/a/sapui5/VBZ/vbvizsvc"
+  },
+  "keywords": [
+    "Adapter3D",
+    "vbiJSON",
+    "export",
+    "png"
+  ],
+  "sapui5-runtime": {
+    "version": "1.74.1"
+  },
+  "author": "SAP SE",
+  "license": "SAP",
+  "dependencies": {
+    "@sap/xsenv": "^1.2.9",
+    "@sap/xssec": "^2.1.4",
+    "atob": "^2.1.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "http": "0.0.0",
+    "puppeteer": "^2.1.1",
+    "three": "^0.114.0"
+  },
+  "devDependencies": {
+    "sapui5-runtime": "^1.5.5",
+    "standard": "^12.0.1"
+  }
+}
