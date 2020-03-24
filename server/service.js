@@ -36,7 +36,9 @@ router.post('/scene/export/:key/:width/:height/:resultType?', function(req, res)
     } else {
         (async (key, width, height, payload, initialPayload, res, returnType, identifier) => {
         const browser = await puppeteer.launch({
-            headless: true,
+            //headless: true,
+            headless: false,
+            slowMo: 250, // slow down by 250ms
             args: ['--no-sandbox', '--disable-gpu']
         })
         console.log('browser has been started');
@@ -48,19 +50,20 @@ router.post('/scene/export/:key/:width/:height/:resultType?', function(req, res)
 			deviceScaleFactor: 1
 		});
         console.log('page has been configured')
-		await page.goto('http://localhost:3004/app.html?width=' + width + 'px&height=' + height + 'px');
+        //await page.goto('http://localhost:3004/app.html?width=' + width + 'px&height=' + height + 'px');
+        await page.goto('https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80');
 		console.log('page has been loaded')
 
 		// feed payoads to adapter within web app
-		await page.evaluate(function(payloads) {
-			var promises = [];
-			var adapter = sap.ui.getCore().byId('vb-adapter');
+		// await page.evaluate(function(payloads) {
+		// 	var promises = [];
+		// 	var adapter = sap.ui.getCore().byId('vb-adapter');
             
-			payloads.forEach(function(payload){
-				promises.push(adapter.load(payload));
-			})
-			return Promise.all(promises)
-        }, [initialPayload, payload]);
+		// 	payloads.forEach(function(payload){
+		// 		promises.push(adapter.load(payload));
+		// 	})
+		// 	return Promise.all(promises)
+        // }, [initialPayload, payload]);
 
 
         if(glTFFormat) {
