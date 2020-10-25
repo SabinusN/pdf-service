@@ -1,9 +1,14 @@
 /**
  * Module dependencies.
  */
-
+var fs = require('fs');
 var app = require('../app');
-var http = require('http');
+var https = require('https');
+
+const options = {
+  key: fs.readFileSync('SAPNetCA_G2.key'),
+  cert: fs.readFileSync('SAPNetCA_G2.crt')
+};
 /**
  * Get port from environment and store in Express.
  */
@@ -41,11 +46,12 @@ if(!global.server.instance) {
   app.set('port', port);
   app.set('requestCert', true);
   app.set('rejectUnauthorized', false);
+  app.disable('x-powered-by');
 
   /**
    * Create HTTP server.
    */
-  global.server.instance = http.createServer(app);
+  global.server.instance = https.createServer(options, app);
 
 
   /**
@@ -96,4 +102,15 @@ function onListening() {
     : 'port ' + addr.port;
     console.log('Listening on ' + bind);
 }
+
+process.on(['SIGTERM','SIGINT'], () => {
+  console.info('SIGTERM signal received.');
+  console.log('Closing http server.');
+  if(global.server.instance) {
+    global.server.instance.close(() => {
+      console.log('Http server closed.');
+      process.exit();
+    });
+  }
+});
 

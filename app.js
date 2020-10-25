@@ -17,7 +17,10 @@ global.service = {
 global.cache = {}; // {"key" : { header: 'image/png', data: base64 }}
 
 // Retrive routes
-var serviceApi = require('./server/service.js');
+var serviceApi = require('./server/prod/service.js');
+
+var simpleServiceApi = require('./server/dev/simpleService.js');
+var servicePdf = require('./server/dev/servicePdf.js');
 
 // Configure the app
 var app = express();
@@ -28,5 +31,7 @@ app.use("/jsm", express.static(path.join(__dirname, 'node_modules/three/examples
 //app.use("/jsm/utils", express.static(path.join(__dirname, 'node_modules/three/examples/jsm/utils')));
 //app.use("/jsm/loaders", express.static(path.join(__dirname, 'node_modules/three/examples/jsm/loaders')));
 app.use(serviceApi);
+app.use(simpleServiceApi);
+app.use(servicePdf);
 
 module.exports = app;
